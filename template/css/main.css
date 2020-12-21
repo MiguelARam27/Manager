@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css?family=Corben");
+@import url("https://fonts.googleapis.com/css?family=Nobile");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,800;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+.heading-main {
+  font-family: "poppins";
+  font-size: 4.5rem;
+  font-weight: 800;
+}
+
+.heading-title {
+  font-family: "poppins";
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.heading-secondary {
+  font-family: "Roboto Slab";
+  font-size: 2.3rem;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+@media only screen and (max-width: 56.25em) {
+  body {
+    padding: 0;
+  }
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  overflow-x: hidden;
+}
+
+a,
+a:visited,
+a:target {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.full-screen-div {
+  width: 100vw;
+  height: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  height: 6vh;
+}
+@media only screen and (max-width: 37.5em) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.navbar__brand-title {
+  padding: 0.5rem 1rem;
+}
+.navbar__brand-title img {
+  height: 4.5rem;
+  width: 4.5rem;
+  object-fit: contain;
+  filter: invert(81%) sepia(5%) saturate(4556%) hue-rotate(118deg) brightness(84%) contrast(79%);
+}
+.navbar__togglebutton {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 3rem;
+  height: 2.1rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .navbar__togglebutton {
+    display: flex;
+    top: 2rem;
+    right: 2rem;
+  }
+}
+.navbar__togglebutton .bar {
+  height: 0.3rem;
+  width: 100%;
+  background-color: white;
+  border-radius: 1rem;
+}
+.navbar__links {
+  width: 40rem;
+}
+.navbar__links.active {
+  display: flex;
+}
+@media only screen and (max-width: 37.5em) {
+  .navbar__links {
+    display: none;
+    width: 100%;
+  }
+}
+.navbar__links ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+@media only screen and (max-width: 37.5em) {
+  .navbar__links ul {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+}
+.navbar__links ul li:hover {
+  background-color: #555;
+}
+.navbar__links ul li .active {
+  border-bottom: 0.2rem #4abdac;
+}
+.navbar__links ul a {
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  display: block;
+}
+@media only screen and (max-width: 37.5em) {
+  .navbar__links ul a {
+    padding: 1rem;
+  }
+}
+
+.footer {
+  height: 5vh;
+  background-color: #333;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2rem 0;
+}
+.footer a {
+  color: white;
+  font-size: 2.4rem;
+}
+.footer a:hover {
+  color: #4abdac;
+}
+
+.signup {
+  height: 80%;
+  width: 90%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0.1rem 0.1rem 0.5rem 0rem rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0.1rem 0.1rem 0.5rem 0rem rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0.1rem 0.1rem 0.5rem 0rem rgba(0, 0, 0, 0.75);
+}
+.signup h1 {
+  text-align: center;
+  letter-spacing: 1px;
+  color: #333;
+}
+.signup__input-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+.signup__input-container label {
+  font-size: 2rem;
+  text-align: center;
+  display: inline-block;
+  text-align: center;
+}
+.signup__input-container input {
+  font-weight: bold;
+  width: 100%;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  background: #f6f7f9;
+  color: #748194;
+  font-size: 14px;
+}
+.signup button {
+  font-weight: bold;
+  margin: 2rem 1rem;
+  padding: 1rem 4rem;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background: #ee9ba3;
+  color: white;
+  font-size: 1.4rem;
+}
+
+.landing {
+  height: 89vh;
+  width: 100%;
+  background-color: #4ab1bd;
+  padding: 2rem 1rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .landing {
+    height: 220vh;
+  }
+}
+.landing__title {
+  text-align: center;
+  color: white;
+  letter-spacing: 1px;
+}
+.landing__container {
+  display: flex;
+  margin: auto;
+  width: 90%;
+  justify-content: space-evenly;
+  height: 80%;
+}
+@media only screen and (max-width: 37.5em) {
+  .landing__container {
+    flex-flow: column;
+  }
+}
+.landing__container__signup {
+  flex: 40%;
+  padding: 1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.landing__container__image {
+  flex: 50%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.landing__container__image img {
+  object-fit: cover;
+  height: 80%;
+}
+@media only screen and (max-width: 37.5em) {
+  .landing__container__image img {
+    height: 60%;
+  }
+}
+.landing__container__image h2 {
+  flex: 20%;
+  letter-spacing: 1px;
+  font-size: 4.2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/*# sourceMappingURL=main.css.map */

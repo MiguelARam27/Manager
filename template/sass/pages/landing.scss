@@ -1,0 +1,58 @@
+.landing {
+  height: 89vh;
+  width: 100%;
+  background-color: $color-primary-light;
+  padding: 2rem 1rem;
+  @include respond(phone) {
+    height: 220vh;
+  }
+  &__title {
+    text-align: center;
+    color: white;
+    letter-spacing: 1px;
+  }
+
+  &__container {
+    display: flex;
+    margin: auto;
+    width: 90%;
+    justify-content: space-evenly;
+    height: 80%;
+    @include respond(phone) {
+      flex-flow: column;
+    }
+
+    &__signup {
+      flex: 40%;
+
+      padding: 1rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__image {
+      flex: 50%;
+      height: 100%;
+
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: space-evenly;
+      img {
+        object-fit: cover;
+        height: 80%;
+        @include respond(phone) {
+          height: 60%;
+        }
+      }
+      h2 {
+        flex: 20%;
+        letter-spacing: 1px;
+        font-size: 4.2rem;
+        text-align: center;
+        margin-top: 2rem;
+      }
+    }
+  }
+}

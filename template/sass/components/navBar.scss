@@ -1,0 +1,83 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  height: 6vh;
+
+  @include respond(phone) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__brand-title {
+    padding: 0.5rem 1rem;
+    img {
+      height: 4.5rem;
+      width: 4.5rem;
+      object-fit: contain;
+      filter: invert(81%) sepia(5%) saturate(4556%) hue-rotate(118deg)
+        brightness(84%) contrast(79%);
+    }
+  }
+
+  &__togglebutton {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 3rem;
+    height: 2.1rem;
+    @include respond(phone) {
+      display: flex;
+      top: 2rem;
+      right: 2rem;
+    }
+
+    .bar {
+      height: 0.3rem;
+      width: 100%;
+      background-color: white;
+      border-radius: 1rem;
+    }
+  }
+  &__links {
+    width: 40rem;
+    &.active {
+      display: flex;
+    }
+    @include respond(phone) {
+      display: none;
+      width: 100%;
+    }
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+      @include respond(phone) {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+      }
+
+      li {
+        &:hover {
+          background-color: #555;
+        }
+        .active {
+          border-bottom: 0.2rem $color-primary;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        padding: 0.5rem;
+        display: block;
+        @include respond(phone) {
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}
