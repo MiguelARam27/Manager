@@ -3,6 +3,7 @@
   width: 100%;
   background-color: $color-primary-light;
   padding: 2rem 1rem;
+  clip-path: polygon(0 0, 100% 0%, 100% 80%, 0% 100%);
   @include respond(phone) {
     height: 220vh;
   }
@@ -38,21 +39,74 @@
       display: flex;
       flex-flow: column;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: space-around;
       img {
         object-fit: cover;
         height: 80%;
+
         @include respond(phone) {
           height: 60%;
         }
       }
       h2 {
+        color: $color-white;
         flex: 20%;
         letter-spacing: 1px;
         font-size: 4.2rem;
         text-align: center;
-        margin-top: 2rem;
       }
+    }
+  }
+}
+
+.services {
+  height: 50vh;
+  background-color: white;
+  @include respond(phone) {
+    height: 110vh;
+  }
+  h1 {
+    text-align: center;
+    color: $color-black;
+    margin-bottom: 1rem;
+  }
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    justify-items: center;
+    align-items: space-around;
+    gap: 0.5rem 0.5rem;
+    height: auto;
+    @include respond(phone) {
+      gap: 3rem;
+    }
+  }
+
+  &__card {
+    width: 35rem;
+    height: auto;
+
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.125);
+    padding: 1rem 1rem;
+
+    &__heading-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      h2 {
+        font-size: 4rem;
+        margin-left: 1rem;
+      }
+      i {
+        font-size: 7rem;
+        margin-right: 3rem;
+        color: rgba($color-primary-dark, 0.8);
+      }
+    }
+    p {
+      padding: 1rem 1rem;
     }
   }
 }
