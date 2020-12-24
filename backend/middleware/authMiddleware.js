@@ -30,4 +30,13 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { protect };
+const isManager = asyncHandler(async (req, res) => {
+  if (req.user && req.user.isManager) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error('Not authoraized as a Manager');
+  }
+});
+
+export { protect, isManager };
