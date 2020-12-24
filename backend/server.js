@@ -4,6 +4,7 @@ import colors from 'colors';
 import connectDB from './config/config.js';
 import morgan from 'morgan';
 import userRoutes from './routes/userRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ app.get('/', (req, res) => {
   res.send('API is running....');
 });
 
+app.use(notFound);
+app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(
