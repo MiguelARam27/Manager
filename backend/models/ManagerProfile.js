@@ -22,11 +22,9 @@ const ManagerProfileSchema = new mongoose.Schema({
   },
   employees: [
     {
-      employee: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Employee',
-        unique: true,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true,
     },
   ],
   schedule: {

@@ -30,7 +30,7 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-const isManager = asyncHandler(async (req, res) => {
+const isManager = asyncHandler(async (req, res, next) => {
   if (req.user && req.user.isManager) {
     next();
   } else {

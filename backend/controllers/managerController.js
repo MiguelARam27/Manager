@@ -1,11 +1,20 @@
 import User from '../models/UserModel.js';
 import Manager from '../models/ManagerProfile.js';
 import asyncHandler from 'express-async-handler';
-import generateToken from '../utils/generateToken.js';
 
 //desc get manager details
 // @route   GET /api/manager
-// @access  Public
+// @access  Protected
+const getProfileInfo = asyncHandler(async (req, res) => {
+  const profile = await Manager.findOne({ user: req.user._id });
+
+  if (profile) {
+    res.json(profile);
+  } else {
+    res.status(404);
+    throw new Error('not found');
+  }
+});
 
 //desc post manager info
 // @route POST /api/manager
@@ -28,6 +37,7 @@ const managerProfile = asyncHandler(async (req, res) => {
       { $set: profileFields },
       { new: true, upsert: true, setDefaultsOnInsert: true }
     );
+    await managerProfile.save();
     return res.json(managerProfile);
   } else {
     res.status(404);
@@ -35,4 +45,60 @@ const managerProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { managerProfile };
+//desc post manager info
+// @route POST /api/manager/employees
+//@access protected
+const createEmployee = asyncHandler(async (req, res) => {
+  const manager = await Manager.findOne({ user: req.user._id });
+  if (manager) {
+    const { email, password } = req.body;
+
+    const userExists = await User.findOne({ email });
+
+    if (userExists) {
+      res.status(400);
+      throw new Error('User already exists');
+    }
+
+    const employee = await User.create({
+      email,
+      password,
+      isManager: false,
+    });
+
+    await employee.save();
+    if (employee) {
+      manager.employees.push(employee._id);
+      await manager.save();
+    }
+
+    //return manager info
+    res.json(manager);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+//desc  remove employee
+// @route Delete /api/manager/employees
+//@access protected
+const removeEmployee = asyncHandler(async (req, res) => {
+  const manager = await Manager.findOne({ user: req.user._id });
+  let employeeUser = await User.findById(req.params.id);
+
+  if (manager && employeeUser) {
+    await Manager.updateOne(
+      { user: req.user._id },
+      { $pull: { employees: req.params.id } }
+    );
+
+    await User.deleteOne({ _id: req.params.id });
+    res.json('User removed');
+  } else {
+    res.status(404);
+    throw new Error('user not found');
+  }
+});
+
+export { managerProfile, getProfileInfo, createEmployee, removeEmployee };
