@@ -17,60 +17,63 @@ const EmployeeProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  monday: {
-    startTime: {
-      type: Number,
+  schedule: {
+    type: Object,
+    monday: {
+      startTime: {
+        type: String,
+      },
+      endTime: {
+        type: String,
+      },
     },
-    endTime: {
-      type: Number,
+    tuesday: {
+      startTime: {
+        type: String,
+      },
+      endTime: {
+        type: String,
+      },
     },
-  },
-  tuesday: {
-    startTime: {
-      type: Number,
+    wednesday: {
+      startTime: {
+        type: String,
+      },
+      endTime: {
+        type: String,
+      },
     },
-    endTime: {
-      type: Number,
+    thursday: {
+      startTime: {
+        type: String,
+      },
+      endTime: {
+        type: String,
+      },
     },
-  },
-  wednesday: {
-    startTime: {
-      type: Number,
+    friday: {
+      startTime: {
+        type: String,
+      },
+      endTime: {
+        type: String,
+      },
     },
-    endTime: {
-      type: Number,
+    saturday: {
+      startTime: {
+        type: String,
+      },
+      endTime: {
+        type: String,
+      },
     },
-  },
-  thursday: {
-    startTime: {
-      type: Number,
-    },
-    endTime: {
-      type: Number,
-    },
-  },
-  friday: {
-    startTime: {
-      type: Number,
-    },
-    endTime: {
-      type: Number,
-    },
-  },
-  saturday: {
-    startTime: {
-      type: Number,
-    },
-    endTime: {
-      type: Number,
-    },
-  },
-  sunday: {
-    startTime: {
-      type: Number,
-    },
-    endTime: {
-      type: Number,
+    sunday: {
+      startTime: {
+        type: String,
+      },
+      endTime: {
+        type: String,
+      },
     },
   },
 });

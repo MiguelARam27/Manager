@@ -101,4 +101,6 @@ const removeEmployee = asyncHandler(async (req, res) => {
   }
 });
 
+//desc get all employees
+
 export { managerProfile, getProfileInfo, createEmployee, removeEmployee };

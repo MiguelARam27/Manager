@@ -5,6 +5,7 @@ import connectDB from './config/config.js';
 import morgan from 'morgan';
 import userRoutes from './routes/userRoutes.js';
 import managerRoutes from './routes/managerRoutes.js';
+import employeeRoutes from './routes/employeeRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/manager', managerRoutes);
+app.use('/api/employee', employeeRoutes);
 app.get('/', (req, res) => {
   res.send('API is running....');
 });
