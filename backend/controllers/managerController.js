@@ -1,10 +1,11 @@
 import User from '../models/UserModel.js';
 import Manager from '../models/ManagerProfile.js';
+import Employee from '../models/EmployeeProfile.js';
 import asyncHandler from 'express-async-handler';
 
 //desc get manager details
 // @route   GET /api/manager
-// @access  Protected
+//@access protected and restricted
 const getProfileInfo = asyncHandler(async (req, res) => {
   const profile = await Manager.findOne({ user: req.user._id });
 
@@ -18,7 +19,7 @@ const getProfileInfo = asyncHandler(async (req, res) => {
 
 //desc post manager info
 // @route POST /api/manager
-//@access protected
+//@access protected and restricted
 const managerProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
@@ -47,7 +48,7 @@ const managerProfile = asyncHandler(async (req, res) => {
 
 //desc post manager info
 // @route POST /api/manager/employees
-//@access protected
+//@access protected and restricted
 const createEmployee = asyncHandler(async (req, res) => {
   const manager = await Manager.findOne({ user: req.user._id });
   if (manager) {
@@ -82,7 +83,7 @@ const createEmployee = asyncHandler(async (req, res) => {
 
 //desc  remove employee
 // @route Delete /api/manager/employees
-//@access protected
+//@access protected and restricted
 const removeEmployee = asyncHandler(async (req, res) => {
   const manager = await Manager.findOne({ user: req.user._id });
   let employeeUser = await User.findById(req.params.id);
@@ -102,5 +103,30 @@ const removeEmployee = asyncHandler(async (req, res) => {
 });
 
 //desc get all employees
+//@ route GET /api/manager/employees
+//@access protected and restricted
+const getEmployees = asyncHandler(async (req, res) => {
+  const manager = await Manager.findOne({ user: req.user._id });
 
-export { managerProfile, getProfileInfo, createEmployee, removeEmployee };
+  let employeeList = [];
+
+  if (manager) {
+    manager.employees.map((employee) => {
+      employeeList.push(employee);
+    });
+    let employees = await Employee.find({ user: { $in: employeeList } });
+
+    res.json(employees);
+  } else {
+    res.status(404);
+    throw new Error('user not found');
+  }
+});
+
+export {
+  managerProfile,
+  getProfileInfo,
+  createEmployee,
+  removeEmployee,
+  getEmployees,
+};
