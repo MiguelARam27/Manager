@@ -5,5 +5,3 @@ button.addEventListener('click', () => {
   console.log('hello');
   navBarLinks.classList.toggle('active');
 });
-
-const example = { a: 'lol', b: 'b', c: 'top', exfjasdlfjaldfjkla: 'top' };

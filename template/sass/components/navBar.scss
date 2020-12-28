@@ -45,16 +45,17 @@
   }
   &__links {
     width: 40rem;
-    &.active {
-      display: flex;
-    }
+
     @include respond(phone) {
       display: none;
       width: 100%;
     }
     ul {
+      margin-top: -1rem;
       display: flex;
       justify-content: space-evenly;
+      background-color: #333;
+      z-index: 3;
       @include respond(phone) {
         flex-direction: column;
         width: 100%;
@@ -81,4 +82,8 @@
       }
     }
   }
+}
+
+.active {
+  display: flex;
 }
