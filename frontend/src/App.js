@@ -7,7 +7,8 @@ function App() {
   return (
     <>
       <Nav />
-      <Route path='/' component={Landing} />
+      <Route path='/login' component={Landing} exact />
+      <Route path='/' component={Landing} exact />
 
       <Footer />
     </>

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../img/logo2.svg';
 const Nav = () => {
   const [active, setActive] = useState(false);
 
-  //for mobile menu
+  //for mobile menu hamburger button
   const clickHandler = () => {
     setActive(!active);
   };
@@ -21,19 +22,14 @@ const Nav = () => {
       <div className={`navbar__links ${active ? 'active' : ''}`}>
         <ul>
           <li>
-            <a href='#' className='heading-secondary'>
+            <Link to='/' className='heading-secondary'>
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href='#' className='heading-secondary'>
-              Home
-            </a>
-          </li>
-          <li>
-            <a href='#' className='heading-secondary'>
-              Home
-            </a>
+            <Link to='/login' className='heading-secondary'>
+              Sign in
+            </Link>
           </li>
         </ul>
       </div>
