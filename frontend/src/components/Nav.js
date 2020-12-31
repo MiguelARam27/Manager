@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../img/logo2.svg';
+import { logOut } from '../actions/userActions';
 const Nav = () => {
   const [active, setActive] = useState(false);
-
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   //for mobile menu hamburger button
   const clickHandler = () => {
     setActive(!active);
   };
-
+  const logoutHandler = () => {
+    dispatch(logOut());
+  };
   return (
     <nav className='navbar'>
       <div className='navbar__brand-title'>
@@ -21,16 +27,27 @@ const Nav = () => {
       </a>
       <div className={`navbar__links ${active ? 'active' : ''}`}>
         <ul>
-          <li>
-            <Link to='/' className='heading-secondary'>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to='/login' className='heading-secondary'>
-              Sign in
-            </Link>
-          </li>
+          {userInfo ? (
+            <li>
+              <Link className='heading-secondary' onClick={logoutHandler}>
+                LogOut
+              </Link>
+            </li>
+          ) : (
+            <>
+              {' '}
+              <li>
+                <Link to='/' className='heading-secondary'>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to='/login' className='heading-secondary'>
+                  Sign in
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
