@@ -28,11 +28,22 @@ const Nav = () => {
       <div className={`navbar__links ${active ? 'active' : ''}`}>
         <ul>
           {userInfo ? (
-            <li>
-              <Link className='heading-secondary' onClick={logoutHandler}>
-                LogOut
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link className='heading-secondary' onClick={logoutHandler}>
+                  LogOut
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/profile'
+                  className='heading-secondary'
+                  onClick={logoutHandler}
+                >
+                  Profile
+                </Link>
+              </li>
+            </>
           ) : (
             <>
               {' '}

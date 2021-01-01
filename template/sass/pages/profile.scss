@@ -1,0 +1,73 @@
+.profile {
+  min-height: 86vh;
+  width: 100%;
+  background-color: rgba($color-primary, 0.9);
+  padding: 4rem 4rem;
+
+  &__container {
+    position: relative;
+    height: 50vh;
+    margin-top: 5rem;
+    background-color: $color-white;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    width: 60%;
+    box-shadow: 0.1rem 0.1rem 0.5rem 0rem rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0.1rem 0.1rem 0.5rem 0rem rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0.1rem 0.1rem 0.5rem 0rem rgba(0, 0, 0, 0.75);
+    @include respond(phone) {
+      width: 90%;
+    }
+
+    > h1:first-child {
+      color: black;
+      text-align: center;
+      width: 100%;
+      font-size: 5rem !important;
+      letter-spacing: 0.4rem;
+    }
+
+    &__input-container {
+      height: 4rem;
+      width: 60%;
+
+      label {
+        font-size: 2rem;
+        text-align: center;
+        display: inline-block;
+        text-align: center;
+      }
+      input {
+        font-weight: bold;
+        width: 100%;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        outline: none;
+        border: none;
+        background: #f6f7f9;
+        color: $color-grey;
+        font-size: 14px;
+      }
+    }
+
+    button {
+      font-weight: bold;
+
+      margin: 0;
+
+      padding: 1rem 4rem;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      background: $color-primary;
+      color: white;
+      font-size: 1.4rem;
+    }
+  }
+}

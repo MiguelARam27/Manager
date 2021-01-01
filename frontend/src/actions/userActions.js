@@ -7,6 +7,7 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_FAIL,
   USER_REGISTER_SUCCESS,
+  USER_REGISTER_RESET,
 } from '../constants/userConstants';
 
 export const login = (email, password) => async (dispatch) => {
@@ -77,6 +78,9 @@ export const logOut = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({
     type: USER_LOGOUT,
+  });
+  dispatch({
+    type: USER_REGISTER_RESET,
   });
   window.location.href = '/login';
 };
