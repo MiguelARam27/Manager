@@ -18,6 +18,7 @@ const Login = () => {
     e.preventDefault();
 
     dispatch(login(email, password));
+    // dispatch(getManagerDetails());
   };
 
   const clearMessage = () => {

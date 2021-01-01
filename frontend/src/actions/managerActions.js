@@ -2,6 +2,9 @@ import {
   MANAGER_PROFILE_UPDATE_REQUEST,
   MANAGER_PROFILE_UPDATE_SUCCESS,
   MANAGER_PROFILE_UPDATE_FAIL,
+  MANAGER_PROFILE_DETAILS_REQUEST,
+  MANAGER_PROFILE_DETAILS_SUCCESS,
+  MANAGER_PROFILE_DETAILS_FAIL,
 } from '../constants/managerConstants';
 import axios from 'axios';
 
@@ -37,6 +40,39 @@ export const updateProfile = (name, email, phone, store) => async (
   } catch (error) {
     dispatch({
       type: MANAGER_PROFILE_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getManagerDetails = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: MANAGER_PROFILE_DETAILS_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get('/api/manager', config);
+
+    localStorage.setItem('managerDetails', JSON.stringify(data));
+    dispatch({
+      type: MANAGER_PROFILE_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: MANAGER_PROFILE_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

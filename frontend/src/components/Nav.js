@@ -20,7 +20,7 @@ const Nav = () => {
       <div className='navbar__brand-title'>
         <img src={logo} alt='logo' />
       </div>
-      <a href='#' className='navbar__togglebutton' onClick={clickHandler}>
+      <a className='navbar__togglebutton' onClick={clickHandler}>
         <span className='bar'></span>
         <span className='bar'></span>
         <span className='bar'></span>
@@ -30,9 +30,9 @@ const Nav = () => {
           {userInfo ? (
             <>
               <li>
-                <Link className='heading-secondary' onClick={logoutHandler}>
+                <a className='heading-secondary' onClick={logoutHandler}>
                   LogOut
-                </Link>
+                </a>
               </li>
               <li>
                 <Link

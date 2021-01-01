@@ -10,6 +10,9 @@ import {
   USER_REGISTER_RESET,
 } from '../constants/userConstants';
 
+import { getManagerDetails } from '../actions/managerActions';
+import { MANAGER_PROFILE_DETAILS_RESET } from '../constants/managerConstants';
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -26,11 +29,16 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
+
     localStorage.setItem('userInfo', JSON.stringify(data));
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
+
+    if (data.isManager) {
+      dispatch(getManagerDetails());
+    }
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -81,6 +89,9 @@ export const logOut = () => async (dispatch) => {
   });
   dispatch({
     type: USER_REGISTER_RESET,
+  });
+  dispatch({
+    type: MANAGER_PROFILE_DETAILS_RESET,
   });
   window.location.href = '/login';
 };
