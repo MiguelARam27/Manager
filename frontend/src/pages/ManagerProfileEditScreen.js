@@ -4,7 +4,7 @@ import { updateProfile, getManagerDetails } from '../actions/managerActions';
 import Message from '../components/Message';
 import Loading from '../components/Loading';
 import { MANAGER_PROFILE_UPDATE_RESET } from '../constants/managerConstants';
-const ProfileEditScreen = () => {
+const ManagerProfileEditScreen = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('enter your name');
   const [email, setEmail] = useState('enter your email');
@@ -110,4 +110,4 @@ const ProfileEditScreen = () => {
   );
 };
 
-export default ProfileEditScreen;
+export default ManagerProfileEditScreen;
