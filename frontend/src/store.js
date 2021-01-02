@@ -5,6 +5,7 @@ import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
 import {
   managerUpdateProfileReducer,
   managerProfileDetailsReducer,
+  managerEmployeesReducer,
 } from './reducers/managerReducers';
 
 const reducer = combineReducers({
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   managerProfileUpdate: managerUpdateProfileReducer,
   managerProfileDetails: managerProfileDetailsReducer,
+  employees: managerEmployeesReducer,
 });
 const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))

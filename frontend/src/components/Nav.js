@@ -38,7 +38,7 @@ const Nav = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to='/managerProfile' className='heading-secondary'>
+                    <Link to='/employees' className='heading-secondary'>
                       Employees
                     </Link>
                   </li>

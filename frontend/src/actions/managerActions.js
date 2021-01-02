@@ -5,6 +5,9 @@ import {
   MANAGER_PROFILE_DETAILS_REQUEST,
   MANAGER_PROFILE_DETAILS_SUCCESS,
   MANAGER_PROFILE_DETAILS_FAIL,
+  MANAGER_EMPLOYEES_REQUEST,
+  MANAGER_EMPLOYEES_SUCCESS,
+  MANAGER_EMPLOYEES_FAIL,
 } from '../constants/managerConstants';
 import axios from 'axios';
 
@@ -73,6 +76,37 @@ export const getManagerDetails = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: MANAGER_PROFILE_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const getEmployees = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: MANAGER_EMPLOYEES_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get('/api/manager/employees', config);
+
+    dispatch({
+      type: MANAGER_EMPLOYEES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: MANAGER_EMPLOYEES_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

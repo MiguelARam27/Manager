@@ -4,7 +4,7 @@ import { login } from '../actions/userActions';
 import { useSelector } from 'react-redux';
 import Message from './Message';
 import { useHistory } from 'react-router-dom';
-import { getManagerDetails } from '../actions/managerActions';
+
 const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -40,7 +40,7 @@ const Login = () => {
         clearMessage();
       }
     }
-  }, [error, success]);
+  }, [error, success, history]);
   return (
     <form className='signup' onSubmit={submitHandler}>
       <h1 className='heading-title'>Login</h1>
