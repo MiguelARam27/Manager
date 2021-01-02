@@ -5,21 +5,18 @@ const EmployeeProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  user: {
+  manager: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Manager',
   },
   name: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
-    required: true,
   },
   phone: {
     type: String,
-    required: true,
   },
   schedule: {
     type: Object,

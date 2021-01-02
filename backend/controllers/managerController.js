@@ -73,6 +73,16 @@ const createEmployee = asyncHandler(async (req, res) => {
       await manager.save();
     }
 
+    let profileFields = {
+      manager: manager._id,
+    };
+    let employeeProfile = await Employee.findOneAndUpdate(
+      { user: employee._id },
+      { $set: profileFields },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
+    );
+
+    await employeeProfile.save();
     //return manager info
     res.json(manager);
   } else {
