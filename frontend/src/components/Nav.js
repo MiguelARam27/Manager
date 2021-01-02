@@ -29,20 +29,45 @@ const Nav = () => {
         <ul>
           {userInfo ? (
             <>
-              <li>
-                <a className='heading-secondary' onClick={logoutHandler}>
-                  LogOut
-                </a>
-              </li>
-              <li>
-                <Link
-                  to='/profile'
-                  className='heading-secondary'
-                  onClick={logoutHandler}
-                >
-                  Profile
-                </Link>
-              </li>
+              {userInfo.isManager ? (
+                <>
+                  {' '}
+                  <li>
+                    <Link to='/managerProfile' className='heading-secondary'>
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/managerProfile' className='heading-secondary'>
+                      Employees
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/managerProfile' className='heading-secondary'>
+                      Schedule
+                    </Link>
+                  </li>
+                  <li>
+                    <a className='heading-secondary' onClick={logoutHandler}>
+                      LogOut
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  {' '}
+                  <li>
+                    <Link to='/employeeProfile' className='heading-secondary'>
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <a className='heading-secondary' onClick={logoutHandler}>
+                      LogOut
+                    </a>
+                  </li>
+                </>
+              )}
             </>
           ) : (
             <>

@@ -26,13 +26,9 @@ const ProfileEditScreen = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(updateProfile(name, email, phone, store));
-    dispatch(getManagerDetails());
   };
   const clearMessage = () => {
     setTimeout(() => {
-      dispatch({
-        type: MANAGER_PROFILE_UPDATE_RESET,
-      });
       setShowMessage(false);
     }, 2000);
   };
@@ -40,6 +36,11 @@ const ProfileEditScreen = () => {
   useEffect(() => {
     if (success) {
       setShowMessage(true);
+      dispatch(getManagerDetails());
+      dispatch({
+        type: MANAGER_PROFILE_UPDATE_RESET,
+      });
+
       clearMessage();
     }
 
@@ -65,6 +66,7 @@ const ProfileEditScreen = () => {
                 type='email'
                 required
                 placeholder={name}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>

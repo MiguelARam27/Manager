@@ -3,22 +3,23 @@ import { useDispatch } from 'react-redux';
 import { login } from '../actions/userActions';
 import { useSelector } from 'react-redux';
 import Message from './Message';
-
+import { useHistory } from 'react-router-dom';
+import { getManagerDetails } from '../actions/managerActions';
 const Login = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [email, setEmail] = useState('Enter your email');
   const [password, setPassword] = useState('Enter your password');
   const [show, setShow] = useState(false);
 
+  console.log(history);
   const userLogin = useSelector((state) => state.userLogin);
-  const { error, success } = userLogin;
+  const { error, success, userInfo } = userLogin;
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     dispatch(login(email, password));
-    // dispatch(getManagerDetails());
   };
 
   const clearMessage = () => {
@@ -27,13 +28,17 @@ const Login = () => {
     }, 2000);
   };
   useEffect(() => {
-    if (error) {
-      setShow(true);
-      clearMessage();
-    }
-    if (success) {
-      setShow(true);
-      clearMessage();
+    if (userInfo) {
+      history.push('/profile');
+    } else {
+      if (error) {
+        setShow(true);
+        clearMessage();
+      }
+      if (success) {
+        setShow(true);
+        clearMessage();
+      }
     }
   }, [error, success]);
   return (
