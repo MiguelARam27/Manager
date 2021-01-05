@@ -29,7 +29,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (userInfo) {
-      history.push('/profile');
+      history.push('/managerProfile');
     } else {
       if (error) {
         setShow(true);

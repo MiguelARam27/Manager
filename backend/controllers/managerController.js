@@ -2,6 +2,7 @@ import User from '../models/UserModel.js';
 import Manager from '../models/ManagerProfile.js';
 import Employee from '../models/EmployeeProfile.js';
 import asyncHandler from 'express-async-handler';
+import { employeeProfileInfo } from './employeeController.js';
 
 //desc get manager details
 // @route   GET /api/manager
@@ -126,7 +127,7 @@ const getEmployees = asyncHandler(async (req, res) => {
     });
     let employees = await Employee.find({ user: { $in: employeeList } });
 
-    res.json(employees);
+    res.json(employees.filter((employee) => employee.name !== undefined));
   } else {
     res.status(404);
     throw new Error('user not found');

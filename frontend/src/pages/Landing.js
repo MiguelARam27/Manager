@@ -12,7 +12,11 @@ const Landing = () => {
         <h1 className='landing__title heading-main'>Managy</h1>
         <div className='landing__container'>
           <div className='landing__container__signup'>
-            {path && path.pathname === '/' ? <SignUp /> : ''}
+            {path && path.pathname === '/' ? (
+              <SignUp employeeSignUp={false} title={'Sign up'} />
+            ) : (
+              ''
+            )}
             {path && path.pathname === '/login' ? <Login /> : ''}
           </div>
           <div className='landing__container__image'>

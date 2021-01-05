@@ -8,6 +8,9 @@ import {
   MANAGER_EMPLOYEES_REQUEST,
   MANAGER_EMPLOYEES_SUCCESS,
   MANAGER_EMPLOYEES_FAIL,
+  MANAGER_ADD_EMPLOYEE_REQUEST,
+  MANAGER_ADD_EMPLOYEE_SUCCESS,
+  MANAGER_ADD_EMPLOYEE_FAIL,
 } from '../constants/managerConstants';
 import axios from 'axios';
 
@@ -107,6 +110,42 @@ export const getEmployees = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: MANAGER_EMPLOYEES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const addEmployee = (email, password) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: MANAGER_ADD_EMPLOYEE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.post(
+      '/api/manager/employees',
+      { email, password },
+      config
+    );
+
+    dispatch({
+      type: MANAGER_ADD_EMPLOYEE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: MANAGER_ADD_EMPLOYEE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

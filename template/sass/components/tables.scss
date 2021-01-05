@@ -1,0 +1,29 @@
+.employee-table {
+  width: 100%;
+
+  border-radius: 0.25em;
+  border-collapse: collapse;
+
+  &__head {
+    th {
+      border-bottom: 1px solid #364043;
+      color: #e2b842;
+      font-size: 1.8rem;
+      text-transform: capitalize;
+      font-weight: 600;
+
+      text-align: left;
+      font-family: $second-font;
+    }
+  }
+
+  &__body {
+    td {
+      color: $color-black;
+      font-weight: 400;
+      padding: 0.5rem 0.6rem;
+      font-family: $second-font;
+      font-size: 1.3rem;
+    }
+  }
+}

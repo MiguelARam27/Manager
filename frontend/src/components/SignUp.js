@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from './Message';
 import { register } from '../actions/userActions';
+import { addEmployee } from '../actions/managerActions';
 
-const SignUp = () => {
+const SignUp = ({ title, employeeSignUp }) => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('Enter your email');
@@ -16,9 +17,19 @@ const SignUp = () => {
   const userRegister = useSelector((state) => state.userRegister);
   const { error, success } = userRegister;
 
+  const employeeRegister = useSelector((state) => state.addEmployee);
+  const {
+    error: employeeAddError,
+    success: employeeAddSuccess,
+  } = employeeRegister;
+
   const registerHandler = (e) => {
     e.preventDefault();
-    dispatch(register(email, password));
+    if (employeeSignUp) {
+      dispatch(addEmployee(email, password));
+    } else {
+      dispatch(register(email, password));
+    }
   };
 
   const clearMessage = () => {
@@ -39,7 +50,7 @@ const SignUp = () => {
 
   return (
     <form className='signup' onSubmit={registerHandler}>
-      <h1 className='heading-title'>Sign up</h1>
+      <h1 className='heading-title'>{title}</h1>
       <div className='signup__input-container'>
         <input
           type='email'
@@ -73,6 +84,12 @@ const SignUp = () => {
       <button onClick={registerHandler}>Submit</button>
       {error && show && <Message variant={'danger'}>{error}</Message>}
       {success && show && <Message variant={'success'}>Welcome!</Message>}
+      {employeeAddError && show && (
+        <Message variant={'danger'}>{employeeAddError}</Message>
+      )}
+      {employeeAddSuccess && show && (
+        <Message variant={'success'}>Added Employee</Message>
+      )}
     </form>
   );
 };

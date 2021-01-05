@@ -11,6 +11,10 @@ import {
   MANAGER_EMPLOYEES_SUCCESS,
   MANAGER_EMPLOYEES_FAIL,
   MANAGER_EMPLOYEES_RESET,
+  MANAGER_ADD_EMPLOYEE_REQUEST,
+  MANAGER_ADD_EMPLOYEE_SUCCESS,
+  MANAGER_ADD_EMPLOYEE_FAIL,
+  MANAGER_ADD_EMPLOYEE_RESET,
 } from '../constants/managerConstants';
 
 export const managerUpdateProfileReducer = (state = {}, action) => {
@@ -59,6 +63,30 @@ export const managerEmployeesReducer = (state = {}, action) => {
     case MANAGER_EMPLOYEES_FAIL:
       return { loading: false, error: action.payload, success: false };
     case MANAGER_EMPLOYEES_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+export const managerAddEmployeesReducer = (
+  state = {
+    loading: false,
+    error: false,
+  },
+  action
+) => {
+  switch (action.type) {
+    case MANAGER_ADD_EMPLOYEE_REQUEST:
+      return { loading: true };
+    case MANAGER_ADD_EMPLOYEE_SUCCESS:
+      return {
+        loading: false,
+        addEmploye: action.payload,
+        success: true,
+      };
+    case MANAGER_ADD_EMPLOYEE_FAIL:
+      return { loading: false, error: action.payload, success: false };
+    case MANAGER_ADD_EMPLOYEE_RESET:
       return {};
     default:
       return state;
