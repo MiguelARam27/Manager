@@ -49,4 +49,22 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, authUser };
+//desc Forgot password
+//@route POST /api/users/forgotpassword
+//@access public
+const forgotPassword = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+
+  if (user) {
+    //get user token
+    const token = user.getResetPasswordToken();
+
+    await user.save({ validateBeforeSave: false });
+    res.json(user);
+  } else {
+    res.status(401);
+    throw new Error('No user found with that email');
+  }
+});
+
+export { registerUser, authUser, forgotPassword };
