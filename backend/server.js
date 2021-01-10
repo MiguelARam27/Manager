@@ -9,7 +9,6 @@ import employeeRoutes from './routes/employeeRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
-
 connectDB();
 const app = express();
 if (process.env.NODE_ENV === 'development') {

@@ -1,6 +1,10 @@
 import User from '../models/UserModel.js';
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken.js';
+import sendEmail from '../utils/sendEmail.js';
+import crypto from 'crypto';
+import { token } from 'morgan';
+
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
@@ -57,14 +61,64 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
   if (user) {
     //get user token
-    const token = user.getResetPasswordToken();
+    const resetToken = user.getResetPasswordToken();
 
     await user.save({ validateBeforeSave: false });
-    res.json(user);
+
+    const resetUrl = `${req.protocol}://${req.get(
+      'host'
+    )}/api/users/reset/${resetToken}`;
+
+    const message = `you are recieveing this message to \n\n ${resetUrl}`;
+
+    try {
+      await sendEmail({
+        email: user.email,
+        subject: 'password reset token',
+        message,
+      });
+
+      res.json({ success: true, data: 'email sent' });
+    } catch (error) {
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
+
+      await user.save({ validateBeforeSave: false });
+      res.status(500);
+      console.log(error);
+      throw new Error('Email could not be sent');
+    }
   } else {
     res.status(401);
     throw new Error('No user found with that email');
   }
 });
 
-export { registerUser, authUser, forgotPassword };
+//desc reset Password
+//@route PUT /api/users/forgotpassword/:resettoken
+//@access public
+const resetPassword = asyncHandler(async (req, res) => {
+  console.log(req.params.resettoken);
+  const resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(req.params.resettoken)
+    .digest('hex');
+
+  const user = await User.findOne({
+    resetPasswordToken,
+    // resetPasswordExpire: { $gt: Date.now() },
+  });
+  console.log(user);
+  if (user) {
+    //set new pasword
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+    await user.save();
+  } else {
+    res.status(401);
+    throw new Error('invalid token');
+  }
+});
+
+export { registerUser, authUser, forgotPassword, resetPassword };
