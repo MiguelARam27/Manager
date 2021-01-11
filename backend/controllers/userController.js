@@ -106,7 +106,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({
     resetPasswordToken,
-    // resetPasswordExpire: { $gt: Date.now() },
+    resetPasswordExpire: { $gt: Date.now() },
   });
   console.log(user);
   if (user) {
@@ -115,6 +115,8 @@ const resetPassword = asyncHandler(async (req, res) => {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save();
+
+    res.json(user);
   } else {
     res.status(401);
     throw new Error('invalid token');

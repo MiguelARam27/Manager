@@ -8,6 +8,10 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_RESET,
+  USER_FORGOT_PASSWORD_RESET,
+  USER_FORGOT_PASSWORD_REQUEST,
+  USER_FORGOT_PASSWORD_FAIL,
+  USER_FORGOT_PASSWORD_SUCCESS,
 } from '../constants/userConstants';
 
 import { getManagerDetails } from '../actions/managerActions';
@@ -82,6 +86,38 @@ export const register = (email, password) => async (dispatch) => {
   }
 };
 
+export const forgotPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_FORGOT_PASSWORD_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+
+    const { data } = await axios.post(
+      '/api/users/forgotpassword',
+      { email },
+      config
+    );
+    dispatch({
+      type: USER_FORGOT_PASSWORD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_FORGOT_PASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
 export const logOut = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
   localStorage.removeItem('managerDetails');
@@ -93,6 +129,9 @@ export const logOut = () => async (dispatch) => {
   });
   dispatch({
     type: MANAGER_PROFILE_DETAILS_RESET,
+  });
+  dispatch({
+    type: USER_FORGOT_PASSWORD_RESET,
   });
   window.location.href = '/login';
 };

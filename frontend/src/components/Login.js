@@ -12,7 +12,6 @@ const Login = () => {
   const [password, setPassword] = useState('Enter your password');
   const [show, setShow] = useState(false);
 
-  console.log(history);
   const userLogin = useSelector((state) => state.userLogin);
   const { error, success, userInfo } = userLogin;
 
@@ -40,7 +39,7 @@ const Login = () => {
         clearMessage();
       }
     }
-  }, [error, success, history]);
+  }, [error, success, history, userInfo]);
   return (
     <form className='signup' onSubmit={submitHandler}>
       <h1 className='heading-title'>Login</h1>

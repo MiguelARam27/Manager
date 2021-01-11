@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import ManagerProfileEditScreen from './pages/ManagerProfileEditScreen';
 import { useHistory } from 'react-router-dom';
 import EmployeeScreen from './pages/EmployeeScreen';
+import ForgotPasswordScreen from './pages/ForgotPasswordScreen';
 function App() {
   const location = useLocation();
   const history = useHistory();
@@ -15,6 +16,7 @@ function App() {
         <Route path='/login' component={Landing} exact />
         <Route path='/' component={Landing} exact />
         <Route path='/employees' component={EmployeeScreen} exact />
+        <Route path='/forgot' component={ForgotPasswordScreen} exact />
         <Route
           path='/managerProfile'
           component={ManagerProfileEditScreen}
