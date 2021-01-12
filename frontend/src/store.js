@@ -11,6 +11,7 @@ import {
   managerProfileDetailsReducer,
   managerEmployeesReducer,
   managerAddEmployeesReducer,
+  managerRemoveEmployeesReducer,
 } from './reducers/managerReducers';
 
 const reducer = combineReducers({
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   managerProfileDetails: managerProfileDetailsReducer,
   employees: managerEmployeesReducer,
   addEmployee: managerAddEmployeesReducer,
+  removeEmployee: managerRemoveEmployeesReducer,
   forgotPassword: userForgotPasswordReducer,
 });
 const userInfoFromStorage = localStorage.getItem('userInfo')

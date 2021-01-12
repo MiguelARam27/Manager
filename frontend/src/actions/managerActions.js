@@ -11,6 +11,9 @@ import {
   MANAGER_ADD_EMPLOYEE_REQUEST,
   MANAGER_ADD_EMPLOYEE_SUCCESS,
   MANAGER_ADD_EMPLOYEE_FAIL,
+  MANAGER_REMOVE_EMPLOYEE_SUCCESS,
+  MANAGER_REMOVE_EMPLOYEE_FAIL,
+  MANAGER_REMOVE_EMPLOYEE_REQUEST,
 } from '../constants/managerConstants';
 import axios from 'axios';
 
@@ -146,6 +149,38 @@ export const addEmployee = (email, password) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: MANAGER_ADD_EMPLOYEE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const removeEmployee = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: MANAGER_REMOVE_EMPLOYEE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.delete(`/api/manager/employees/${id}`, config);
+
+    dispatch({
+      type: MANAGER_REMOVE_EMPLOYEE_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: MANAGER_REMOVE_EMPLOYEE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

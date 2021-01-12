@@ -93,7 +93,7 @@ const createEmployee = asyncHandler(async (req, res) => {
 });
 
 //desc  remove employee
-// @route Delete /api/manager/employees
+// @route Delete /api/manager/employees/:id
 //@access protected and restricted
 const removeEmployee = asyncHandler(async (req, res) => {
   const manager = await Manager.findOne({ user: req.user._id });

@@ -38,41 +38,39 @@ const EmployeeScreen = () => {
                 {employees &&
                   employees.map((employee, key) => {
                     return (
-                      <>
-                        <tr key={key}>
-                          <td>{employee.name}</td>
-                          <td>{employee.phone}</td>
-                          <td>{employee.email}</td>
-                          <td>
-                            {employee.schedule.monday.startTime} -{' '}
-                            {employee.schedule.monday.endTime}
-                          </td>
-                          <td>
-                            {employee.schedule.tuesday.startTime} -{' '}
-                            {employee.schedule.tuesday.endTime}
-                          </td>
-                          <td>
-                            {employee.schedule.wednesday.startTime} -{' '}
-                            {employee.schedule.wednesday.endTime}
-                          </td>
-                          <td>
-                            {employee.schedule.thursday.startTime} -{' '}
-                            {employee.schedule.thursday.endTime}
-                          </td>
-                          <td>
-                            {employee.schedule.friday.startTime} -{' '}
-                            {employee.schedule.friday.endTime}
-                          </td>
-                          <td>
-                            {employee.schedule.saturday.startTime} -{' '}
-                            {employee.schedule.saturday.endTime}
-                          </td>
-                          <td>
-                            {employee.schedule.sunday.startTime} -{' '}
-                            {employee.schedule.sunday.endTime}
-                          </td>
-                        </tr>
-                      </>
+                      <tr key={key}>
+                        <td>{employee.name}</td>
+                        <td>{employee.phone}</td>
+                        <td>{employee.email}</td>
+                        <td>
+                          {employee.schedule.monday.startTime} -{' '}
+                          {employee.schedule.monday.endTime}
+                        </td>
+                        <td>
+                          {employee.schedule.tuesday.startTime} -{' '}
+                          {employee.schedule.tuesday.endTime}
+                        </td>
+                        <td>
+                          {employee.schedule.wednesday.startTime} -{' '}
+                          {employee.schedule.wednesday.endTime}
+                        </td>
+                        <td>
+                          {employee.schedule.thursday.startTime} -{' '}
+                          {employee.schedule.thursday.endTime}
+                        </td>
+                        <td>
+                          {employee.schedule.friday.startTime} -{' '}
+                          {employee.schedule.friday.endTime}
+                        </td>
+                        <td>
+                          {employee.schedule.saturday.startTime} -{' '}
+                          {employee.schedule.saturday.endTime}
+                        </td>
+                        <td>
+                          {employee.schedule.sunday.startTime} -{' '}
+                          {employee.schedule.sunday.endTime}
+                        </td>
+                      </tr>
                     );
                   })}
               </tbody>
