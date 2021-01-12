@@ -15,7 +15,10 @@ import {
 } from '../constants/userConstants';
 
 import { getManagerDetails } from '../actions/managerActions';
-import { MANAGER_PROFILE_DETAILS_RESET } from '../constants/managerConstants';
+import {
+  MANAGER_PROFILE_DETAILS_RESET,
+  MANAGER_ADD_EMPLOYEE_RESET,
+} from '../constants/managerConstants';
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -132,6 +135,9 @@ export const logOut = () => async (dispatch) => {
   });
   dispatch({
     type: USER_FORGOT_PASSWORD_RESET,
+  });
+  dispatch({
+    type: MANAGER_ADD_EMPLOYEE_RESET,
   });
   window.location.href = '/login';
 };

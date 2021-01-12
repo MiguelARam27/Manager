@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployees } from '../actions/managerActions';
 import SignUp from '../components/SignUp';
+import RemoveEmployee from '../components/RemoveEmployee';
 
 const EmployeeScreen = () => {
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ const EmployeeScreen = () => {
           </div>
           <div className='employee__container__flex-grid__employee-input'>
             <SignUp title={'Add Employee'} employeeSignUp={true} />
+            <RemoveEmployee employees={employees && employees} />
           </div>
         </div>
       </div>
