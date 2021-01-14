@@ -314,12 +314,34 @@ ul {
   text-align: left;
   font-family: "Roboto Slab";
 }
+@media only screen and (max-width: 75em) {
+  .employee-table__head th {
+    font-size: 0.5rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .employee-table__head th {
+    font-size: 0.9rem;
+  }
+}
 .employee-table__body td {
   color: #333;
   font-weight: 400;
-  padding: 0.5rem 0.6rem;
+  padding: 0.5rem;
   font-family: "Roboto Slab";
   font-size: 1.3rem;
+  text-align: left;
+  text-transform: capitalize;
+}
+@media only screen and (max-width: 75em) {
+  .employee-table__body td {
+    font-size: 0.5rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .employee-table__body td {
+    font-size: 0.7rem;
+  }
 }
 
 .landing {
@@ -477,6 +499,16 @@ ul {
   height: 40%;
   width: 30%;
 }
+@media only screen and (max-width: 75em) {
+  .employee__container__flex-grid__employee-input {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .employee__container__flex-grid__employee-input {
+    width: 80%;
+  }
+}
 .employee__container__flex-grid__employee-input .signup {
   height: 100%;
   width: 100%;
@@ -487,6 +519,11 @@ ul {
 }
 .employee__container__flex-grid__employee-list {
   width: 90%;
+}
+@media only screen and (max-width: 75em) {
+  .employee__container__flex-grid__employee-list {
+    width: 100%;
+  }
 }
 
 .profile {

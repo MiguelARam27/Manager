@@ -31,7 +31,7 @@ const EmployeeScreen = () => {
                   <th>Thurs</th>
                   <th>Fri</th>
                   <th>Sat</th>
-                  <th>Sunday</th>
+                  <th>Sun</th>
                 </tr>
               </thead>
               <tbody className='employee-table__body'>
