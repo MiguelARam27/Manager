@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
+import path from 'path';
 import connectDB from './config/config.js';
 import morgan from 'morgan';
 import userRoutes from './routes/userRoutes.js';
@@ -19,8 +20,9 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     res.send('API is running....');
   });
+  app.use(morgan('dev'));
 }
-app.use(morgan('dev'));
+
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/manager', managerRoutes);
